@@ -132,3 +132,54 @@ Basic reliability considerations:
 
 Example structure (adjust to your repo):
 
+.
+├── app/
+│ ├── main.py # FastAPI entrypoint
+│ ├── schemas.py # Pydantic request/response models
+│ └── qa_inference.py # Model loading + prediction utilities
+├── src/
+│ ├── data/
+│ │ ├── load_dataset.py # SQuAD loading
+│ │ └── preprocess.py # tokenization + span alignment
+│ ├── train.py # training script (Colab/local)
+│ └── evaluate.py # evaluation script (optional)
+├── models/
+│ └── best/ # downloaded best checkpoint from Google Drive
+├── tests/
+│ └── test_api.py # basic API test(s)
+├── Dockerfile
+├── pyproject.toml
+├── uv.lock # if using uv
+└── README.md
+
+---
+
+# Setup & Usage
+
+## A) Training on Colab (GPU)
+
+1. Open the training notebook / script in Colab.
+2. Run:
+   - dataset download/load
+   - preprocessing/tokenization
+   - model fine-tuning
+3. Save **all artifacts** to a single Google Drive folder.
+
+Expected artifacts in Drive (example):
+- `config.json`
+- `tokenizer.json` / `vocab.txt` / tokenizer files
+- `pytorch_model.bin` or `model.safetensors`
+- `training_args.json` (optional)
+- `metrics.json` (optional)
+
+## B) Download best model to local
+
+Download the best checkpoint folder from Drive into:
+
+## C) Run FastAPI locally
+
+Install dependencies:
+```bash
+uv sync
+# or: pip install -r requirements.txt (if used)
+```
