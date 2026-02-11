@@ -181,5 +181,6 @@ Download the best checkpoint folder from Drive into:
 Install dependencies:
 ```bash
 uv sync
-# or: pip install -r requirements.txt (if used)
+# or: pip install -r requirements.txt
 ```
+
